@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PokeBasket - Premium Collectible Cards</title>
+<title>PokeWheels - Premium Hot Wheels & Collectible Cards</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
     * {
         margin: 0;
@@ -46,6 +47,7 @@
         padding: 0 20px;
     }
 
+    /* VIP Banner */
     .vip-banner {
         background: #000;
         border-bottom: 2px solid var(--accent);
@@ -69,6 +71,7 @@
         margin-left: 8px;
     }
 
+    /* Header */
     header {
         background: rgba(10, 10, 10, 0.95);
         backdrop-filter: blur(10px);
@@ -127,6 +130,7 @@
         color: var(--accent);
     }
 
+    /* Mega Menu */
     .main-nav {
         display: flex;
         align-items: center;
@@ -243,6 +247,13 @@
         padding-left: 8px;
     }
 
+    .menu-column .submenu {
+        margin-left: 16px;
+        margin-top: 8px;
+        padding-left: 12px;
+        border-left: 2px solid var(--border);
+    }
+
     .header-actions {
         display: flex;
         align-items: center;
@@ -295,16 +306,6 @@
         color: var(--text);
     }
 
-    .btn-success {
-        border-color: var(--success);
-        color: var(--success);
-    }
-
-    .btn-success:hover {
-        background: var(--success);
-        color: var(--text);
-    }
-
     .cart-btn {
         position: relative;
     }
@@ -338,6 +339,7 @@
         font-weight: 600;
     }
 
+    /* Mobile Menu */
     .mobile-menu-toggle {
         display: none;
         flex-direction: column;
@@ -383,6 +385,50 @@
         cursor: pointer;
     }
 
+    .mobile-nav-item {
+        margin-bottom: 8px;
+    }
+
+    .mobile-nav-item button {
+        width: 100%;
+        text-align: left;
+        padding: 14px 16px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobile-nav-item button.active {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .mobile-submenu {
+        display: none;
+        padding-left: 16px;
+        margin-top: 8px;
+    }
+
+    .mobile-submenu.active {
+        display: block;
+    }
+
+    .mobile-submenu button {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        margin-bottom: 8px;
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+
+    /* Hero */
     .hero {
         padding: 80px 0 60px;
         text-align: center;
@@ -435,6 +481,7 @@
         margin: 32px auto;
     }
 
+    /* Breadcrumb */
     .breadcrumb {
         padding: 20px 0;
         font-size: 14px;
@@ -446,11 +493,16 @@
         text-decoration: none;
     }
 
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
     .breadcrumb span {
         margin: 0 8px;
         color: #666;
     }
 
+    /* Product Grid */
     .products {
         padding: 40px 0 80px;
     }
@@ -600,6 +652,57 @@
         font-size: 13px;
     }
 
+    /* Lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 3000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .lightbox.active {
+        display: flex;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        box-shadow: 0 0 60px rgba(212, 175, 55, 0.4);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Modal */
     .modal {
         display: none;
         position: fixed;
@@ -684,15 +787,7 @@
         padding: 24px;
     }
 
-    .admin-tools {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 24px;
-        padding-bottom: 24px;
-        border-bottom: 1px solid var(--border);
-    }
-
+    /* Form */
     .form-group {
         margin-bottom: 20px;
     }
@@ -728,12 +823,51 @@
         box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
     }
 
+    .form-error {
+        color: var(--danger);
+        font-size: 13px;
+        margin-top: 6px;
+        display: none;
+    }
+
+    .form-error.show {
+        display: block;
+    }
+
+    .form-helper {
+        font-size: 12px;
+        color: #AAA;
+        margin-top: 4px;
+    }
+
+    .image-upload-preview {
+        margin-top: 12px;
+        border: 2px dashed var(--border);
+        border-radius: 8px;
+        padding: 40px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .image-upload-preview:hover {
+        border-color: var(--accent);
+        background: rgba(212, 175, 55, 0.05);
+    }
+
+    .image-upload-preview img {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 8px;
+    }
+
     .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 16px;
     }
 
+    /* Cart */
     .cart-items {
         margin-bottom: 24px;
     }
@@ -817,12 +951,17 @@
         margin-top: 4px;
     }
 
+    .remove-item:hover {
+        text-decoration: underline;
+    }
+
     .empty-cart {
         text-align: center;
         padding: 40px 20px;
         color: #AAA;
     }
 
+    /* Shipping */
     .shipping-section {
         margin: 24px 0;
         padding: 20px;
@@ -896,6 +1035,7 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Summary */
     .cart-summary {
         border-top: 2px solid var(--accent);
         padding-top: 20px;
@@ -956,6 +1096,52 @@
         box-shadow: 0 6px 20px rgba(255, 196, 57, 0.4);
     }
 
+    /* Orders */
+    .order-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .order-item {
+        padding: 16px;
+        margin-bottom: 12px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+    }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .order-id {
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .order-date {
+        font-size: 13px;
+        color: #AAA;
+    }
+
+    .order-products {
+        font-size: 14px;
+        color: #CCC;
+        margin-bottom: 8px;
+    }
+
+    .order-total {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--accent);
+        text-align: right;
+    }
+
+    /* Footer */
     footer {
         background: #000;
         border-top: 2px solid var(--accent);
@@ -999,13 +1185,13 @@
     .footer-bottom a {
         color: var(--accent);
         text-decoration: none;
-        display: inline;
     }
 
     .footer-bottom a:hover {
         text-decoration: underline;
     }
 
+    /* Toast */
     .toast {
         position: fixed;
         bottom: 24px;
@@ -1031,40 +1217,20 @@
         font-weight: 600;
     }
 
+    /* Admin Styles */
     .admin-login {
         max-width: 400px;
         margin: 0 auto;
     }
 
-    .image-upload-preview {
-        margin-top: 12px;
-        border: 2px dashed var(--border);
-        border-radius: 8px;
-        padding: 40px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s;
+    .admin-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-bottom: 24px;
     }
 
-    .image-upload-preview:hover {
-        border-color: var(--accent);
-        background: rgba(212, 175, 55, 0.05);
-    }
-
-    .image-upload-preview img {
-        max-width: 100%;
-        max-height: 300px;
-        border-radius: 8px;
-    }
-
-    .import-label {
-        cursor: pointer;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
+    /* Mobile */
     @media (max-width: 1024px) {
         .main-nav {
             display: none;
@@ -1165,10 +1331,6 @@
         .mega-menu-content {
             grid-template-columns: 1fr;
         }
-
-        .admin-tools {
-            grid-template-columns: 1fr;
-        }
     }
 
     @media (max-width: 390px) {
@@ -1193,51 +1355,46 @@
 </style>
 </head>
 <body>
+    <!-- VIP Banner -->
     <div class="vip-banner">
         <div class="container">
             <p>VIP MEMBERS GET EXCLUSIVE DROPS <span>Sign up today for early access</span></p>
         </div>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-inner">
                 <div class="header-left">
                     <a href="#" class="logo" onclick="scrollToTop()">
                         <div class="logo-icon">P</div>
-                        <div class="logo-text">Poke<span>Basket</span></div>
+                        <div class="logo-text">Poke<span>Wheels</span></div>
                     </a>
                     
+                    <!-- Desktop Navigation -->
                     <nav class="main-nav">
                         <div class="nav-item">
                             <button class="nav-btn active" data-category="all" onclick="filterCategory('all')">All</button>
                         </div>
                         <div class="nav-item has-dropdown">
-                            <button class="nav-btn" data-category="Pokemon Cards" onclick="filterCategory('Pokemon Cards')">Pokemon Cards</button>
+                            <button class="nav-btn" data-category="Collectibles Cards">Collectibles Cards</button>
                             <div class="mega-menu">
                                 <div class="mega-menu-content">
                                     <div class="menu-column">
-                                        <h4>Pokemon Card Collection</h4>
+                                        <h4>Pokemon Card</h4>
                                         <ul>
-                                            <li><button onclick="filterSubcategory('Pokemon Cards', 'All Stage 1 Cards')">All Stage 1 Cards</button></li>
-                                            <li><button onclick="filterSubcategory('Pokemon Cards', 'All Stage 2 Cards')">All Stage 2 Cards</button></li>
-                                            <li><button onclick="filterSubcategory('Pokemon Cards', 'Energy Cards')">Energy Cards</button></li>
-                                            <li><button onclick="filterSubcategory('Pokemon Cards', 'Bundles')">Bundles</button></li>
-                                            <li><button onclick="filterCategory('Pokemon Cards')">All Pokemon Cards</button></li>
+                                            <li><button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'All Stage 1 Cards')">All Stage 1 Cards</button></li>
+                                            <li><button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'All Stage 2 Cards')">All Stage 2 Cards</button></li>
+                                            <li><button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'Energy Cards')">Energy Cards</button></li>
+                                            <li><button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'Bundles')">Bundles</button></li>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav-item has-dropdown">
-                            <button class="nav-btn" data-category="Basketball Cards" onclick="filterCategory('Basketball Cards')">Basketball Cards</button>
-                            <div class="mega-menu">
-                                <div class="mega-menu-content">
                                     <div class="menu-column">
-                                        <h4>Basketball Card Collection</h4>
+                                        <h4>Basketball Cards</h4>
                                         <ul>
-                                            <li><button onclick="filterSubcategory('Basketball Cards', 'Bundles')">Bundles</button></li>
-                                            <li><button onclick="filterCategory('Basketball Cards')">All Basketball Cards</button></li>
+                                            <li><button onclick="filterSubcategory2('Collectibles Cards', 'Basketball Cards', 'Bundles')">Bundles</button></li>
+                                            <li><button onclick="filterSubcategory('Collectibles Cards', 'Basketball Cards')">All Basketball Cards</button></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1245,6 +1402,7 @@
                         </div>
                     </nav>
 
+                    <!-- Mobile Menu Toggle -->
                     <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                         <span></span>
                         <span></span>
@@ -1253,50 +1411,72 @@
                 </div>
 
                 <div class="header-actions" id="headerActions">
+                    <!-- Dynamic content -->
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
         <button class="mobile-nav-close" onclick="toggleMobileMenu()">&times;</button>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-            <button class="btn" onclick="filterCategory('all'); toggleMobileMenu()">All Products</button>
-            <button class="btn" onclick="filterCategory('Pokemon Cards'); toggleMobileMenu()">Pokemon Cards</button>
-            <button class="btn" onclick="filterCategory('Basketball Cards'); toggleMobileMenu()">Basketball Cards</button>
+        <div class="mobile-nav-item">
+            <button onclick="filterCategory('all'); toggleMobileMenu()">All Products</button>
+        </div>
+        <div class="mobile-nav-item">
+            <button onclick="toggleMobileSubmenu(this)">
+                Collectibles Cards <span>▼</span>
+            </button>
+            <div class="mobile-submenu">
+                <button onclick="filterSubcategory('Collectibles Cards', 'Pokemon Card'); toggleMobileMenu()">Pokemon Card</button>
+                <button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'All Stage 1 Cards'); toggleMobileMenu()" style="margin-left:16px">└ Stage 1</button>
+                <button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'All Stage 2 Cards'); toggleMobileMenu()" style="margin-left:16px">└ Stage 2</button>
+                <button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'Energy Cards'); toggleMobileMenu()" style="margin-left:16px">└ Energy Cards</button>
+                <button onclick="filterSubcategory2('Collectibles Cards', 'Pokemon Card', 'Bundles'); toggleMobileMenu()" style="margin-left:16px">└ Bundles</button>
+                <button onclick="filterSubcategory('Collectibles Cards', 'Basketball Cards'); toggleMobileMenu()">Basketball Cards</button>
+                <button onclick="filterSubcategory2('Collectibles Cards', 'Basketball Cards', 'Bundles'); toggleMobileMenu()" style="margin-left:16px">└ Bundles</button>
+            </div>
         </div>
     </div>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>PokeBasket - Premium Collectible Cards</h1>
+                <h1>PokeWheels - Premium Collectible Cards</h1>
                 <div class="gold-divider"></div>
-                <p>Curated luxury collectible cards for discerning enthusiasts. Rare Pokemon cards and Basketball card bundles delivered worldwide.</p>
+                <p>Curated luxury collectibles for discerning enthusiasts. Rare Pokemon cards and Basketball card bundles delivered worldwide.</p>
                 <a href="#products" class="btn btn-primary" onclick="scrollToProducts(event)">Shop Collection</a>
             </div>
         </div>
     </section>
 
+    <!-- Breadcrumb -->
     <div class="container" id="breadcrumbContainer" style="display:none;">
-        <div class="breadcrumb" id="breadcrumb"></div>
+        <div class="breadcrumb" id="breadcrumb">
+            <!-- Dynamic breadcrumb -->
+        </div>
     </div>
 
+    <!-- Products -->
     <section class="products" id="products">
         <div class="container">
             <h2 class="section-title serif">Featured Collection</h2>
             <div class="filter-info" id="filterInfo">Showing: All Products</div>
             <div id="productContainer">
-                <div class="product-grid" id="productGrid"></div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Products injected by JS -->
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>About PokeBasket</h3>
+                    <h3>About PokeWheels</h3>
                     <p>Premium destination for collectible card collectors. Authentic products, verified sellers, worldwide shipping.</p>
                 </div>
                 <div class="footer-section">
@@ -1313,15 +1493,16 @@
                 <div class="footer-section">
                     <h3>VIP Program</h3>
                     <p>Join our VIP list for exclusive drops, early access, and special pricing on limited editions.</p>
-                    <button class="btn" style="margin-top:12px;" onclick="showAdminModal()">Admin</button>
+                    <a href="#" onclick="showAdminLogin(event)">Admin Login</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 PokeBasket. All rights reserved. | Contact: <a href="mailto:jdasilva198333@gmail.com">jdasilva198333@gmail.com</a></p>
+                <p>&copy; 2025 PokeWheels. All rights reserved. | Contact: <a href="mailto:jdasilva198333@gmail.com">jdasilva198333@gmail.com</a></p>
             </div>
         </div>
     </footer>
 
+    <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1333,17 +1514,23 @@
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-input" id="loginEmail" required>
+                        <div class="form-error" id="loginEmailError"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-input" id="loginPassword" required>
+                        <div class="form-error" id="loginPasswordError"></div>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    <div class="form-link" style="text-align:center; margin-top:16px; font-size:14px; color:#AAA;">
+                        Don't have an account? <a href="#" onclick="switchToSignup(event)" style="color:var(--accent);text-decoration:none;font-weight:600;">Sign Up</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!-- Signup Modal -->
     <div class="modal" id="signupModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1355,21 +1542,28 @@
                     <div class="form-group">
                         <label class="form-label">Full Name</label>
                         <input type="text" class="form-input" id="signupName" required>
+                        <div class="form-error" id="signupNameError"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-input" id="signupEmail" required>
+                        <div class="form-error" id="signupEmailError"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-input" id="signupPassword" required minlength="6">
+                        <div class="form-error" id="signupPasswordError"></div>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                    <div class="form-link" style="text-align:center; margin-top:16px; font-size:14px; color:#AAA;">
+                        Already have an account? <a href="#" onclick="switchToLogin(event)" style="color:var(--accent);text-decoration:none;font-weight:600;">Login</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!-- Cart Modal -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1377,97 +1571,133 @@
                 <button class="close-btn" onclick="closeModal('cartModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div id="cartContent"></div>
+                <div id="cartContent">
+                    <!-- Cart content injected -->
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="adminModal">
+    <!-- Orders Modal -->
+    <div class="modal" id="ordersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title serif">My Orders</h3>
+                <button class="close-btn" onclick="closeModal('ordersModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="ordersContent">
+                    <!-- Orders content injected -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <img id="lightboxImage" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title serif">Admin Access</h3>
-                <button class="close-btn" onclick="document.getElementById('adminModal').style.display='none'">&times;</button>
+                <button class="close-btn" onclick="closeModal('adminLoginModal')">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="admin-login">
-                    <div class="form-group">
-                        <label class="form-label">Admin Password</label>
-                        <input type="password" class="form-input" id="adminPass" required>
-                    </div>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="checkAdminPassword()">Login</button>
+                    <form id="adminLoginForm">
+                        <div class="form-group">
+                            <label class="form-label">Admin Password</label>
+                            <input type="password" class="form-input" id="adminPassword" required>
+                            <div class="form-error" id="adminPasswordError"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="adminDashboard">
+    <!-- Admin Panel Modal -->
+    <div class="modal" id="adminPanelModal">
         <div class="modal-content large">
             <div class="modal-header">
-                <h3 class="modal-title serif">Admin Dashboard</h3>
-                <button class="close-btn" onclick="document.getElementById('adminDashboard').style.display='none'">&times;</button>
+                <h3 class="modal-title serif">Admin Panel</h3>
+                <button class="close-btn" onclick="closeModal('adminPanelModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="admin-tools">
-                    <button class="btn btn-success" onclick="exportProducts()">📥 Export Products JSON</button>
-                    <label class="btn btn-primary import-label">
-                        📤 Import Products JSON
-                        <input type="file" id="importFile" accept=".json" onchange="importProducts(event)">
-                    </label>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="showAddProduct()">+ Add Product</button>
+                    <button class="btn" onclick="exportProducts()">Export Products</button>
+                    <button class="btn" onclick="document.getElementById('importFile').click()">Import Products</button>
+                    <button class="btn btn-danger" onclick="clearAllProducts()">Clear All Products</button>
                 </div>
-                <form id="adminProductForm" onsubmit="addProduct(); return false;">
-                    <h4 style="color: var(--accent); margin-bottom: 16px;">Add New Product</h4>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importProducts(event)">
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 class="modal-title serif" id="productModalTitle">Add New Product</h3>
+                <button class="close-btn" onclick="closeModal('productModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="productId">
                     <div class="form-group">
                         <label class="form-label">Product Name *</label>
-                        <input type="text" class="form-input" id="prodName" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Price *</label>
-                            <input type="number" class="form-input" id="prodPrice" step="0.01" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Stock *</label>
-                            <input type="number" class="form-input" id="prodStock" min="0" required>
-                        </div>
+                        <input type="text" class="form-input" id="productName" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Category *</label>
-                            <select class="form-select" id="prodCategory" required>
+                            <select class="form-select" id="productCategory" required onchange="updateSubcategories()">
                                 <option value="">Select Category</option>
-                                <option value="Pokemon Cards">Pokemon Cards</option>
-                                <option value="Basketball Cards">Basketball Cards</option>
+                                <option value="Collectibles Cards">Collectibles Cards</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Condition</label>
-                            <input type="text" class="form-input" id="prodCondition" placeholder="Mint, Near Mint, etc">
+                            <label class="form-label">Subcategory 1</label>
+                            <select class="form-select" id="productSubcategory1" onchange="updateSubcategory2()">
+                                <option value="">None</option>
+                            </select>
                         </div>
+                    </div>
+                    <div class="form-group" id="subcategory2Group" style="display:none;">
+                        <label class="form-label">Subcategory 2 / Tier</label>
+                        <select class="form-select" id="productSubcategory2">
+                            <option value="">None</option>
+                        </select>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Grading</label>
-                            <input type="text" class="form-input" id="prodGrading" placeholder="PSA 10, BGS 9.5, etc">
+                            <label class="form-label">Price *</label>
+                            <input type="number" class="form-input" id="productPrice" step="0.01" min="0" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Rarity</label>
-                            <input type="text" class="form-input" id="prodRarity" placeholder="Common, Rare, Ultra Rare">
+                            <label class="form-label">Stock Quantity</label>
+                            <input type="number" class="form-input" id="productStock" min="0" value="100">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Set/Year</label>
-                        <input type="text" class="form-input" id="prodSetYear" placeholder="Base Set 1999">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Product Image</label>
-                        <input type="file" class="form-input" id="prodImageFile" accept="image/*">
-                        <div class="image-upload-preview" id="adminImagePreview">
+                        <input type="file" class="form-input" id="productImageFile" accept="image/*" onchange="previewProductImage(event)">
+                        <div class="form-helper">Upload product image (JPG, PNG, WebP)</div>
+                        <div class="image-upload-preview" id="imagePreview" onclick="document.getElementById('productImageFile').click()">
                             <div>Click to upload image</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea class="form-textarea" id="prodDescription"></textarea>
+                        <textarea class="form-textarea" id="productDescription"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Save Product</button>
                 </form>
@@ -1475,68 +1705,29 @@
         </div>
     </div>
 
+    <!-- Toast -->
     <div class="toast" id="toast">
         <div class="toast-message" id="toastMessage"></div>
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    const DEFAULT_PRODUCTS = [
-        {
-            id: 1,
-            name: "Charizard Holo PSA 10 Base Set",
-            category: "Pokemon Cards",
-            subcategory1: "All Stage 2 Cards",
-            subcategory2: "",
-            price: 3999.99,
-            stock: 1,
-            condition: "Mint",
-            grading: "PSA 10",
-            rarity: "Ultra Rare",
-            setYear: "Base Set 1999",
-            description: "Pristine PSA 10 Charizard holographic card from the original Base Set. One of the most iconic Pokemon cards ever printed.",
-            image: ""
-        },
-        {
-            id: 2,
-            name: "LeBron James Rookie Card BGS 9.5",
-            category: "Basketball Cards",
-            subcategory1: "",
-            subcategory2: "",
-            price: 2499.99,
-            stock: 1,
-            condition: "Gem Mint",
-            grading: "BGS 9.5",
-            rarity: "Ultra Rare",
-            setYear: "2003 Topps Chrome",
-            description: "LeBron James rookie card graded BGS 9.5. The king's debut card in stunning condition.",
-            image: ""
-        },
-        {
-            id: 3,
-            name: "Pikachu Base Set 1999",
-            category: "Pokemon Cards",
-            subcategory1: "All Stage 1 Cards",
-            subcategory2: "",
-            price: 149.99,
-            stock: 5,
-            condition: "Near Mint",
-            grading: "Ungraded",
-            rarity: "Rare",
-            setYear: "Base Set 1999",
-            description: "Original Base Set Pikachu card from 1999. A must-have for any Pokemon collector.",
-            image: ""
-        }
-    ];
+    // Product Data - Removed demo products, loads empty
+    const defaultProducts = [];
 
+    // State
     let products = [];
     let cart = [];
     let currentUser = null;
     let isAdmin = false;
     let shippingType = 'us';
     let currentFilter = { category: 'all', subcategory1: '', subcategory2: '' };
+    let editingProductId = null;
     const SHIPPING_RATES = { us: 5, international: 15 };
     const FREE_SHIPPING_THRESHOLD = 50;
+    const ADMIN_PASSWORD = 'pokebasket2024';
 
+    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
         loadProducts();
         loadUser();
@@ -1544,24 +1735,142 @@
         renderProducts();
         updateHeader();
         updateCartBadge();
-        document.getElementById('prodImageFile').addEventListener('change', previewAdminImage);
-        document.getElementById('adminImagePreview').addEventListener('click', () => document.getElementById('prodImageFile').click());
-        document.getElementById('loginForm').addEventListener('submit', handleLogin);
-        document.getElementById('signupForm').addEventListener('submit', handleSignup);
     });
 
+    // LocalStorage Functions
     function loadProducts() {
-        const saved = localStorage.getItem('pokebasket_products');
-        if (saved && saved !== '[]') {
-            products = JSON.parse(saved);
-        } else {
-            products = [...DEFAULT_PRODUCTS];
-            saveProducts();
-        }
+        const saved = localStorage.getItem('pokewheels_products');
+        products = saved ? JSON.parse(saved) : [];
     }
 
     function saveProducts() {
-        localStorage.setItem('pokebasket_products', JSON.stringify(products));
+        localStorage.setItem('pokewheels_products', JSON.stringify(products));
+    }
+
+    function loadUser() {
+        const user = localStorage.getItem('pokewheels_user');
+        if (user) currentUser = JSON.parse(user);
+        isAdmin = localStorage.getItem('pokewheels_admin') === 'true';
+    }
+
+    function saveUser(user) {
+        localStorage.setItem('pokewheels_user', JSON.stringify(user));
+        currentUser = user;
+    }
+
+    function loadCart() {
+        const saved = localStorage.getItem('pokewheels_cart');
+        if (saved) cart = JSON.parse(saved);
+    }
+
+    function saveCart() {
+        localStorage.setItem('pokewheels_cart', JSON.stringify(cart));
+        updateCartBadge();
+    }
+
+    function loadOrders() {
+        if (!currentUser) return [];
+        const orders = localStorage.getItem('pokewheels_orders_' + currentUser.email);
+        return orders ? JSON.parse(orders) : [];
+    }
+
+    function saveOrder(order) {
+        if (!currentUser) return;
+        const orders = loadOrders();
+        orders.unshift(order);
+        localStorage.setItem('pokewheels_orders_' + currentUser.email, JSON.stringify(orders));
+    }
+
+    // Admin Functions
+    function showAdminLogin(e) {
+        e.preventDefault();
+        showModal('adminLoginModal');
+    }
+
+    function handleAdminLogin(e) {
+        e.preventDefault();
+        const password = document.getElementById('adminPassword').value;
+        if (password === ADMIN_PASSWORD) {
+            isAdmin = true;
+            localStorage.setItem('pokewheels_admin', 'true');
+            closeModal('adminLoginModal');
+            updateHeader();
+            renderProducts();
+            showToast('Admin access granted');
+            document.getElementById('adminLoginForm').reset();
+        } else {
+            document.getElementById('adminPasswordError').textContent = 'Invalid password';
+            document.getElementById('adminPasswordError').classList.add('show');
+        }
+    }
+
+    function adminLogout() {
+        isAdmin = false;
+        localStorage.removeItem('pokewheels_admin');
+        updateHeader();
+        renderProducts();
+        showToast('Admin logged out');
+    }
+
+    function showAdminPanel() {
+        showModal('adminPanelModal');
+    }
+
+    function showAddProduct() {
+        closeModal('adminPanelModal');
+        editingProductId = null;
+        document.getElementById('productModalTitle').textContent = 'Add New Product';
+        document.getElementById('productForm').reset();
+        document.getElementById('productId').value = '';
+        document.getElementById('imagePreview').innerHTML = '<div>Click to upload image</div>';
+        updateSubcategories();
+        showModal('productModal');
+    }
+
+    function editProduct(id) {
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+        editingProductId = id;
+        document.getElementById('productModalTitle').textContent = 'Edit Product';
+        document.getElementById('productId').value = id;
+        document.getElementById('productName').value = product.name;
+        document.getElementById('productCategory').value = product.category;
+        updateSubcategories();
+        setTimeout(() => {
+            document.getElementById('productSubcategory1').value = product.subcategory1 || '';
+            updateSubcategory2();
+            setTimeout(() => {
+                document.getElementById('productSubcategory2').value = product.subcategory2 || '';
+            }, 50);
+        }, 50);
+        document.getElementById('productPrice').value = product.price;
+        document.getElementById('productStock').value = product.stock || 100;
+        document.getElementById('productDescription').value = product.description || '';
+        if (product.image) {
+            document.getElementById('imagePreview').innerHTML = `<img src="${product.image}" alt="Preview">`;
+        }
+        showModal('productModal');
+    }
+
+    function deleteProduct(id) {
+        if (confirm('Are you sure you want to delete this product?')) {
+            products = products.filter(p => p.id !== id);
+            saveProducts();
+            renderProducts();
+            showToast('Product deleted successfully');
+        }
+    }
+
+    function clearAllProducts() {
+        if (confirm('Are you sure you want to delete ALL products? This cannot be undone.')) {
+            products = [];
+            localStorage.removeItem('pokebasket_products');
+            localStorage.removeItem('pokewheels_products');
+            saveProducts();
+            renderProducts();
+            closeModal('adminPanelModal');
+            showToast('All products cleared');
+        }
     }
 
     function exportProducts() {
@@ -1570,10 +1879,8 @@
         const url = URL.createObjectURL(dataBlob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `pokebasket_products_${new Date().toISOString().split('T')[0]}.json`;
-        document.body.appendChild(link);
+        link.download = 'pokewheels_products_' + Date.now() + '.json';
         link.click();
-        document.body.removeChild(link);
         URL.revokeObjectURL(url);
         showToast('Products exported successfully');
     }
@@ -1581,133 +1888,119 @@
     function importProducts(event) {
         const file = event.target.files[0];
         if (!file) return;
-
+        
         const reader = new FileReader();
         reader.onload = function(e) {
             try {
-                const imported = JSON.parse(e.target.result);
-                if (!Array.isArray(imported)) {
-                    showToast('Invalid file format');
-                    return;
-                }
-                if (confirm(`Import ${imported.length} products? This will replace your current inventory.`)) {
-                    products = imported;
+                const importedProducts = JSON.parse(e.target.result);
+                if (Array.isArray(importedProducts)) {
+                    products = importedProducts;
                     saveProducts();
                     renderProducts();
-                    showToast(`Imported ${imported.length} products successfully`);
+                    closeModal('adminPanelModal');
+                    showToast('Products imported successfully');
+                } else {
+                    showToast('Invalid file format');
                 }
             } catch (err) {
-                showToast('Error importing file: ' + err.message);
+                showToast('Error importing products');
             }
         };
         reader.readAsText(file);
         event.target.value = '';
     }
 
-    function loadUser() {
-        const user = localStorage.getItem('pokebasket_user');
-        if (user) currentUser = JSON.parse(user);
-        isAdmin = localStorage.getItem('pokebasket_admin') === 'true';
-    }
+    function handleProductSubmit(e) {
+        e.preventDefault();
+        const id = document.getElementById('productId').value;
+        const name = document.getElementById('productName').value;
+        const category = document.getElementById('productCategory').value;
+        const subcategory1 = document.getElementById('productSubcategory1').value;
+        const subcategory2 = document.getElementById('productSubcategory2').value;
+        const price = parseFloat(document.getElementById('productPrice').value);
+        const stock = parseInt(document.getElementById('productStock').value);
+        const description = document.getElementById('productDescription').value;
+        const imageFile = document.getElementById('productImageFile').files[0];
 
-    function saveUser(user) {
-        localStorage.setItem('pokebasket_user', JSON.stringify(user));
-        currentUser = user;
-    }
-
-    function loadCart() {
-        const saved = localStorage.getItem('pokebasket_cart');
-        if (saved) cart = JSON.parse(saved);
-    }
-
-    function saveCart() {
-        localStorage.setItem('pokebasket_cart', JSON.stringify(cart));
-        updateCartBadge();
-    }
-
-    function showAdminModal() {
-        document.getElementById('adminModal').style.display = 'flex';
-        document.getElementById('adminModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function checkAdminPassword() {
-        if(document.getElementById('adminPass').value === 'pokebasket2024') {
-            showAdminDashboard();
+        if (imageFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                saveProductData(id, name, category, subcategory1, subcategory2, price, stock, description, e.target.result);
+            };
+            reader.readAsDataURL(imageFile);
         } else {
-            alert('Wrong password');
+            const existingProduct = products.find(p => p.id == id);
+            saveProductData(id, name, category, subcategory1, subcategory2, price, stock, description, existingProduct?.image || '');
         }
     }
 
-    function showAdminDashboard() {
-        document.getElementById('adminModal').style.display = 'none';
-        document.getElementById('adminModal').classList.remove('active');
-        document.getElementById('adminDashboard').style.display = 'flex';
-        document.getElementById('adminDashboard').classList.add('active');
-        isAdmin = true;
-        localStorage.setItem('pokebasket_admin', 'true');
-        updateHeader();
+    function saveProductData(id, name, category, subcategory1, subcategory2, price, stock, description, image) {
+        const productData = { name, category, subcategory1, subcategory2, price, stock, description, image };
+        
+        if (id) {
+            const index = products.findIndex(p => p.id == id);
+            if (index !== -1) {
+                products[index] = { ...products[index], ...productData };
+                showToast('Product updated successfully');
+            }
+        } else {
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            products.push({ id: newId, ...productData });
+            showToast('Product added successfully');
+        }
+        
+        saveProducts();
         renderProducts();
+        closeModal('productModal');
     }
 
-    function previewAdminImage(event) {
+    function previewProductImage(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('adminImagePreview').innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="Preview">`;
             };
             reader.readAsDataURL(file);
         }
     }
 
-    function addProduct() {
-        const name = document.getElementById('prodName').value;
-        const price = parseFloat(document.getElementById('prodPrice').value);
-        const stock = parseInt(document.getElementById('prodStock').value);
-        const category = document.getElementById('prodCategory').value;
-        const condition = document.getElementById('prodCondition').value;
-        const grading = document.getElementById('prodGrading').value;
-        const rarity = document.getElementById('prodRarity').value;
-        const setYear = document.getElementById('prodSetYear').value;
-        const description = document.getElementById('prodDescription').value;
-        const imageFile = document.getElementById('prodImageFile').files[0];
+    function updateSubcategories() {
+        const category = document.getElementById('productCategory').value;
+        const sub1Select = document.getElementById('productSubcategory1');
+        const sub2Group = document.getElementById('subcategory2Group');
+        
+        sub1Select.innerHTML = '<option value="">None</option>';
+        sub2Group.style.display = 'none';
 
-        if (imageFile) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                saveNewProduct(name, price, stock, category, condition, grading, rarity, setYear, description, e.target.result);
-            };
-            reader.readAsDataURL(imageFile);
-        } else {
-            saveNewProduct(name, price, stock, category, condition, grading, rarity, setYear, description, '');
+        if (category === 'Collectibles Cards') {
+            sub1Select.innerHTML += '<option value="Pokemon Card">Pokemon Card</option>';
+            sub1Select.innerHTML += '<option value="Basketball Cards">Basketball Cards</option>';
         }
     }
 
-    function saveNewProduct(name, price, stock, category, condition, grading, rarity, setYear, description, image) {
-        const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-        products.push({
-            id: newId,
-            name,
-            category,
-            subcategory1: '',
-            subcategory2: '',
-            price,
-            stock,
-            condition,
-            grading,
-            rarity,
-            setYear,
-            description,
-            image
-        });
-        saveProducts();
-        renderProducts();
-        document.getElementById('adminProductForm').reset();
-        document.getElementById('adminImagePreview').innerHTML = '<div>Click to upload image</div>';
-        showToast('Product added successfully');
+    function updateSubcategory2() {
+        const sub1 = document.getElementById('productSubcategory1').value;
+        const sub2Select = document.getElementById('productSubcategory2');
+        const sub2Group = document.getElementById('subcategory2Group');
+        
+        sub2Select.innerHTML = '<option value="">None</option>';
+
+        if (sub1 === 'Pokemon Card') {
+            sub2Group.style.display = 'block';
+            sub2Select.innerHTML += '<option value="All Stage 1 Cards">All Stage 1 Cards</option>';
+            sub2Select.innerHTML += '<option value="All Stage 2 Cards">All Stage 2 Cards</option>';
+            sub2Select.innerHTML += '<option value="Energy Cards">Energy Cards</option>';
+            sub2Select.innerHTML += '<option value="Bundles">Bundles</option>';
+        } else if (sub1 === 'Basketball Cards') {
+            sub2Group.style.display = 'block';
+            sub2Select.innerHTML += '<option value="Bundles">Bundles</option>';
+        } else {
+            sub2Group.style.display = 'none';
+        }
     }
 
+    // Category Filter Functions
     function filterCategory(category) {
         currentFilter = { category, subcategory1: '', subcategory2: '' };
         updateFilterUI();
@@ -1717,6 +2010,13 @@
 
     function filterSubcategory(category, subcategory1) {
         currentFilter = { category, subcategory1, subcategory2: '' };
+        updateFilterUI();
+        renderProducts();
+        scrollToProducts();
+    }
+
+    function filterSubcategory2(category, subcategory1, subcategory2) {
+        currentFilter = { category, subcategory1, subcategory2 };
         updateFilterUI();
         renderProducts();
         scrollToProducts();
@@ -1739,9 +2039,13 @@
             filterText = currentFilter.category;
             if (currentFilter.subcategory1) {
                 filterText += ' → ' + currentFilter.subcategory1;
+                if (currentFilter.subcategory2) {
+                    filterText += ' → ' + currentFilter.subcategory2;
+                }
             }
         }
         document.getElementById('filterInfo').textContent = `Showing: ${filterText}`;
+
         updateBreadcrumb();
     }
 
@@ -1759,7 +2063,10 @@
         html += `<span>></span><a href="#" onclick="filterCategory('${currentFilter.category}'); return false;">${currentFilter.category}</a>`;
         
         if (currentFilter.subcategory1) {
-            html += `<span>></span><span>${currentFilter.subcategory1}</span>`;
+            html += `<span>></span><a href="#" onclick="filterSubcategory('${currentFilter.category}', '${currentFilter.subcategory1}'); return false;">${currentFilter.subcategory1}</a>`;
+            if (currentFilter.subcategory2) {
+                html += `<span>></span><span>${currentFilter.subcategory2}</span>`;
+            }
         }
         
         breadcrumb.innerHTML = html;
@@ -1776,10 +2083,16 @@
             filtered = filtered.filter(p => p.subcategory1 === currentFilter.subcategory1);
         }
 
+        if (currentFilter.subcategory2) {
+            filtered = filtered.filter(p => p.subcategory2 === currentFilter.subcategory2);
+        }
+
         return filtered;
     }
 
+    // Render Functions
     function renderProducts() {
+        const grid = document.getElementById('productGrid');
         const container = document.getElementById('productContainer');
         const filteredProducts = getFilteredProducts();
         
@@ -1787,34 +2100,35 @@
             container.innerHTML = `
                 <div class="empty-state">
                     <div class="empty-state-icon">📦</div>
-                    <h3>No inventory available right now</h3>
-                    <p>Products in this collection will appear here once stock is available. Please come back soon.</p>
-                    ${isAdmin ? '<button class="btn btn-primary" style="margin-top:20px;" onclick="showAdminDashboard()">Add Product</button>' : ''}
+                    <h3>No products yet</h3>
+                    <p>No inventory available right now. Products will appear here once stock is added.</p>
+                    ${isAdmin ? '<button class="btn btn-primary" style="margin-top:20px;" onclick="showAddProduct()">Add Product</button>' : ''}
                 </div>
             `;
             return;
         }
         
         container.innerHTML = `<div class="product-grid" id="productGrid">${filteredProducts.map(p => `
-            <div class="product-card" data-product-id="${p.id}">
+            <div class="product-card">
                 ${isAdmin ? `
                     <div class="admin-badge">ADMIN</div>
                     <div class="product-actions-admin">
+                        <button class="btn" style="padding:6px 12px;font-size:12px;" onclick="event.stopPropagation(); editProduct(${p.id})">Edit</button>
                         <button class="btn btn-danger" style="padding:6px 12px;font-size:12px;" onclick="event.stopPropagation(); deleteProduct(${p.id})">Delete</button>
                     </div>
                 ` : ''}
-                <div class="product-image">
+                <div class="product-image" onclick="openLightbox('${p.image || ''}')">
                     ${p.image ? `<img src="${p.image}" alt="${p.name}">` : `
                         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                             <rect width="400" height="400" fill="#0A0A0A"/>
                             <rect x="40" y="160" width="320" height="80" fill="none" stroke="#D4AF37" stroke-width="2"/>
-                            <text x="200" y="210" font-family="Georgia, serif" font-size="32" fill="#D4AF37" text-anchor="middle" font-weight="bold">PokeBasket</text>
+                            <text x="200" y="210" font-family="Georgia, serif" font-size="32" fill="#D4AF37" text-anchor="middle" font-weight="bold">PokeWheels</text>
                             <text x="200" y="340" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">${p.category}</text>
                         </svg>
                     `}
                 </div>
                 <div class="product-info">
-                    <div class="product-category">${p.category}${p.condition ? ' • ' + p.condition : ''}${p.grading ? ' • ' + p.grading : ''}</div>
+                    <div class="product-category">${p.subcategory1 || p.category}${p.subcategory2 ? ' • ' + p.subcategory2 : ''}</div>
                     <div class="product-name">${p.name}</div>
                     <div class="product-bottom">
                         <div class="product-price">$${p.price.toFixed(2)}</div>
@@ -1825,12 +2139,17 @@
         `).join('')}</div>`;
     }
 
-    function deleteProduct(id) {
-        if (confirm('Are you sure you want to delete this product?')) {
-            products = products.filter(p => p.id !== id);
-            saveProducts();
-            renderProducts();
-            showToast('Product deleted successfully');
+    function openLightbox(imageSrc) {
+        if (!imageSrc) return;
+        document.getElementById('lightboxImage').src = imageSrc;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+        if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
     }
 
@@ -1839,7 +2158,7 @@
         let html = '';
 
         if (isAdmin) {
-            html += `<button class="btn" onclick="showAdminDashboard()">+ Add Product</button>`;
+            html += `<button class="btn" onclick="showAdminPanel()">Admin Panel</button>`;
             html += `<button class="btn" onclick="adminLogout()">Admin Logout</button>`;
         }
 
@@ -1847,6 +2166,7 @@
             html += `
                 <div class="user-info">
                     <span>Hi, <span class="user-name">${currentUser.name}</span></span>
+                    <button class="btn" onclick="showOrders()">My Orders</button>
                 </div>
                 <button class="btn" onclick="logout()">Logout</button>
             `;
@@ -1876,6 +2196,7 @@
         }
     }
 
+    // Cart Functions
     function addToCart(productId) {
         const product = products.find(p => p.id === productId);
         if (!product) return;
@@ -1932,7 +2253,7 @@
                             ${item.image ? `<img src="${item.image}" alt="${item.name}">` : `
                                 <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="80" height="80" fill="#0A0A0A"/>
-                                    <text x="40" y="45" font-size="10" fill="#D4AF37" text-anchor="middle" font-weight="bold">PB</text>
+                                    <text x="40" y="45" font-size="10" fill="#D4AF37" text-anchor="middle" font-weight="bold">PW</text>
                                 </svg>
                             `}
                         </div>
@@ -2009,22 +2330,35 @@
             showToast('Cart is empty');
             return;
         }
+        const { total } = calculateTotals();
+        const order = {
+            id: 'PW' + Date.now(),
+            date: new Date().toLocaleDateString(),
+            products: cart.map(i => ({ name: i.name, qty: i.quantity, price: i.price })),
+            total: total,
+            shipping: shippingType
+        };
+        saveOrder(order);
         cart = [];
         saveCart();
         closeModal('cartModal');
         showToast('Order placed! Redirecting to PayPal...');
     }
 
+    // Auth Functions
     function handleLogin(e) {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
         
-        const users = JSON.parse(localStorage.getItem('pokebasket_users') || '[]');
+        clearErrors('login');
+        
+        const users = JSON.parse(localStorage.getItem('pokewheels_users') || '[]');
         const user = users.find(u => u.email === email && u.password === password);
         
         if (!user) {
-            alert('Invalid email or password');
+            document.getElementById('loginPasswordError').textContent = 'Invalid email or password';
+            document.getElementById('loginPasswordError').classList.add('show');
             return;
         }
         
@@ -2041,24 +2375,29 @@
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         
+        clearErrors('signup');
+        
         if (name.length < 2) {
-            alert('Name must be at least 2 characters');
+            document.getElementById('signupNameError').textContent = 'Name must be at least 2 characters';
+            document.getElementById('signupNameError').classList.add('show');
             return;
         }
         
         if (password.length < 6) {
-            alert('Password must be at least 6 characters');
+            document.getElementById('signupPasswordError').textContent = 'Password must be at least 6 characters';
+            document.getElementById('signupPasswordError').classList.add('show');
             return;
         }
         
-        const users = JSON.parse(localStorage.getItem('pokebasket_users') || '[]');
+        const users = JSON.parse(localStorage.getItem('pokewheels_users') || '[]');
         if (users.find(u => u.email === email)) {
-            alert('Email already registered');
+            document.getElementById('signupEmailError').textContent = 'Email already registered';
+            document.getElementById('signupEmailError').classList.add('show');
             return;
         }
         
         users.push({ name, email, password });
-        localStorage.setItem('pokebasket_users', JSON.stringify(users));
+        localStorage.setItem('pokewheels_users', JSON.stringify(users));
         saveUser({ name, email });
         closeModal('signupModal');
         updateHeader();
@@ -2067,20 +2406,44 @@
     }
 
     function logout() {
-        localStorage.removeItem('pokebasket_user');
+        localStorage.removeItem('pokewheels_user');
         currentUser = null;
         updateHeader();
         showToast('Logged out successfully');
     }
 
-    function adminLogout() {
-        isAdmin = false;
-        localStorage.removeItem('pokebasket_admin');
-        updateHeader();
-        renderProducts();
-        showToast('Admin logged out');
+    function showOrders() {
+        if (!currentUser) {
+            showModal('loginModal');
+            return;
+        }
+        const orders = loadOrders();
+        const content = document.getElementById('ordersContent');
+        
+        if (orders.length === 0) {
+            content.innerHTML = '<div class="empty-cart">No orders yet</div>';
+        } else {
+            content.innerHTML = `
+                <div class="order-list">
+                    ${orders.map(order => `
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span class="order-id">Order ${order.id}</span>
+                                <span class="order-date">${order.date}</span>
+                            </div>
+                            <div class="order-products">
+                                ${order.products.map(p => `${p.name} x${p.qty}`).join('<br>')}
+                            </div>
+                            <div class="order-total">Total: $${order.total.toFixed(2)}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        showModal('ordersModal');
     }
 
+    // Modal Functions
     function showModal(id) {
         document.getElementById(id).classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -2096,16 +2459,43 @@
         showModal('cartModal');
     }
 
+    function switchToSignup(e) {
+        e.preventDefault();
+        closeModal('loginModal');
+        showModal('signupModal');
+    }
+
+    function switchToLogin(e) {
+        e.preventDefault();
+        closeModal('signupModal');
+        showModal('loginModal');
+    }
+
+    // Mobile Menu
     function toggleMobileMenu() {
         document.getElementById('mobileNav').classList.toggle('active');
     }
 
+    function toggleMobileSubmenu(btn) {
+        const submenu = btn.nextElementSibling;
+        submenu.classList.toggle('active');
+        btn.querySelector('span').textContent = submenu.classList.contains('active') ? '▲' : '▼';
+    }
+
+    // Utility Functions
     function showToast(message) {
         const toast = document.getElementById('toast');
         const msg = document.getElementById('toastMessage');
         msg.textContent = message;
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function clearErrors(prefix) {
+        ['Name', 'Email', 'Password'].forEach(field => {
+            const el = document.getElementById(prefix + field + 'Error');
+            if (el) el.classList.remove('show');
+        });
     }
 
     function scrollToTop() {
@@ -2117,28 +2507,29 @@
         document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Event Listeners
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    document.getElementById('signupForm').addEventListener('submit', handleSignup);
+    document.getElementById('adminLoginForm').addEventListener('submit', handleAdminLogin);
+    document.getElementById('productForm').addEventListener('submit', handleProductSubmit);
+
+    // Close modal on outside click
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (e.target === modal) closeModal(modal.id);
         });
     });
 
+    // Close modal on Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            document.querySelectorAll('.modal.active').forEach(m => {
-                m.style.display = 'none';
-                m.classList.remove('active');
-            });
+            document.querySelectorAll('.modal.active').forEach(m => closeModal(m.id));
+            document.getElementById('lightbox').classList.remove('active');
             document.getElementById('mobileNav').classList.remove('active');
             document.body.style.overflow = '';
         }
     });
 </script>
-<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 <script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 </body>
 </html>
