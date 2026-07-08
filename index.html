@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PokeBasket - Premium Collectible Cards</title>
+
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e53e3e">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PokeBasket">
+
 <style>
     * {
         margin: 0;
@@ -22,7 +31,9 @@
         --danger: #ff5555;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+        scroll-behavior: smooth;
+    }
 
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -116,8 +127,14 @@
         box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
     }
 
-    .logo-text { font-size: 24px; font-weight: 700; }
-    .logo-text span { color: var(--accent); }
+    .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .logo-text span {
+        color: var(--accent);
+    }
 
     .main-nav {
         display: flex;
@@ -126,7 +143,9 @@
         position: relative;
     }
 
-    .nav-item { position: static; }
+    .nav-item {
+        position: static;
+    }
 
     .nav-btn {
         padding: 10px 18px;
@@ -163,7 +182,9 @@
         transition: transform 0.3s;
     }
 
-    .nav-item.has-dropdown:hover .nav-btn::after { transform: rotate(180deg); }
+    .nav-item.has-dropdown:hover .nav-btn::after {
+        transform: rotate(180deg);
+    }
 
     .mega-menu {
         position: absolute;
@@ -205,8 +226,13 @@
         border-bottom: 1px solid var(--border);
     }
 
-    .menu-column ul { list-style: none; }
-    .menu-column li { margin-bottom: 8px; }
+    .menu-column ul {
+        list-style: none;
+    }
+
+    .menu-column li {
+        margin-bottom: 8px;
+    }
 
     .menu-column a, .menu-column button {
         color: #AAA;
@@ -268,11 +294,31 @@
         border-color: var(--accent-dark);
     }
 
-    .btn-sm { padding: 6px 12px; font-size: 12px; }
-    .btn-danger { border-color: var(--danger); color: var(--danger); }
-    .btn-danger:hover { background: var(--danger); color: var(--text); }
+    .btn-danger {
+        border-color: var(--danger);
+        color: var(--danger);
+    }
 
-    .cart-btn { position: relative; }
+    .btn-danger:hover {
+        background: var(--danger);
+        color: var(--text);
+    }
+
+    .install-btn {
+        background: linear-gradient(135deg, #e53e3e, #c53030);
+        border-color: #e53e3e;
+        color: white;
+        display: none;
+    }
+
+    .install-btn:hover {
+        background: linear-gradient(135deg, #c53030, #9b2c2c);
+        box-shadow: 0 4px 16px rgba(229, 62, 62, 0.4);
+    }
+
+    .cart-btn {
+        position: relative;
+    }
 
     .cart-badge {
         position: absolute;
@@ -298,7 +344,10 @@
         font-size: 14px;
     }
 
-    .user-name { color: var(--accent); font-weight: 600; }
+    .user-name {
+        color: var(--accent);
+        font-weight: 600;
+    }
 
     .mobile-menu-toggle {
         display: none;
@@ -330,7 +379,9 @@
         padding: 80px 20px 40px;
     }
 
-    .mobile-nav.active { display: block; }
+    .mobile-nav.active {
+        display: block;
+    }
 
     .mobile-nav-close {
         position: absolute;
@@ -366,7 +417,10 @@
         to { transform: rotate(360deg); }
     }
 
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
 
     .hero h1 {
         font-size: 56px;
@@ -398,10 +452,20 @@
         color: #AAA;
     }
 
-    .breadcrumb a { color: var(--accent); text-decoration: none; }
-    .breadcrumb span { margin: 0 8px; color: #666; }
+    .breadcrumb a {
+        color: var(--accent);
+        text-decoration: none;
+    }
 
-    .products { padding: 40px 0 80px; }
+    .breadcrumb span {
+        margin: 0 8px;
+        color: #666;
+    }
+
+    .products {
+        padding: 40px 0 80px;
+    }
+
     .section-title {
         text-align: center;
         font-size: 36px;
@@ -423,8 +487,17 @@
         color: #AAA;
     }
 
-    .empty-state-icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
-    .empty-state h3 { font-size: 24px; margin-bottom: 8px; color: var(--text); }
+    .empty-state-icon {
+        font-size: 64px;
+        margin-bottom: 16px;
+        opacity: 0.3;
+    }
+
+    .empty-state h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        color: var(--text);
+    }
 
     .product-grid {
         display: grid;
@@ -463,7 +536,9 @@
         z-index: 10;
     }
 
-    .product-card:hover .product-actions-admin { display: flex; }
+    .product-card:hover .product-actions-admin {
+        display: flex;
+    }
 
     .admin-badge {
         position: absolute;
@@ -494,8 +569,13 @@
         transition: transform 0.4s ease;
     }
 
-    .product-card:hover .product-image img { transform: scale(1.1); }
-    .product-info { padding: 20px; }
+    .product-card:hover .product-image img {
+        transform: scale(1.1);
+    }
+
+    .product-info {
+        padding: 20px;
+    }
 
     .product-category {
         color: var(--accent);
@@ -526,7 +606,10 @@
         font-family: Georgia, serif;
     }
 
-    .add-cart-btn { padding: 8px 16px; font-size: 13px; }
+    .add-cart-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
 
     .modal {
         display: none;
@@ -543,7 +626,9 @@
         animation: fadeIn 0.3s ease;
     }
 
-    .modal.active { display: flex; }
+    .modal.active {
+        display: flex;
+    }
 
     @keyframes fadeIn {
         from { opacity: 0; }
@@ -562,7 +647,9 @@
         position: relative;
     }
 
-    .modal-content.large { max-width: 800px; }
+    .modal-content.large {
+        max-width: 800px;
+    }
 
     @keyframes slideUp {
         from { transform: translateY(40px); opacity: 0; }
@@ -577,7 +664,10 @@
         align-items: center;
     }
 
-    .modal-title { font-size: 24px; color: var(--accent); }
+    .modal-title {
+        font-size: 24px;
+        color: var(--accent);
+    }
 
     .close-btn {
         background: none;
@@ -596,9 +686,18 @@
         transition: all 0.2s;
     }
 
-    .close-btn:hover { background: var(--bg); color: var(--accent); }
-    .modal-body { padding: 24px; }
-    .form-group { margin-bottom: 20px; }
+    .close-btn:hover {
+        background: var(--bg);
+        color: var(--accent);
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
 
     .form-label {
         display: block;
@@ -620,7 +719,10 @@
         font-family: inherit;
     }
 
-    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
 
     .form-input:focus, .form-select:focus, .form-textarea:focus {
         outline: none;
@@ -634,7 +736,9 @@
         gap: 16px;
     }
 
-    .cart-items { margin-bottom: 24px; }
+    .cart-items {
+        margin-bottom: 24px;
+    }
 
     .cart-item {
         display: flex;
@@ -652,11 +756,32 @@
         overflow: hidden;
     }
 
-    .cart-item-image img { width: 100%; height: 100%; object-fit: cover; }
-    .cart-item-details { flex: 1; }
-    .cart-item-name { font-weight: 600; margin-bottom: 4px; }
-    .cart-item-price { color: var(--accent); font-size: 14px; margin-bottom: 8px; }
-    .cart-item-qty { display: flex; align-items: center; gap: 12px; }
+    .cart-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cart-item-details {
+        flex: 1;
+    }
+
+    .cart-item-name {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .cart-item-price {
+        color: var(--accent);
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .cart-item-qty {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
     .qty-btn {
         width: 28px;
@@ -673,8 +798,16 @@
         transition: all 0.2s;
     }
 
-    .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .qty-value { min-width: 30px; text-align: center; font-weight: 600; }
+    .qty-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .qty-value {
+        min-width: 30px;
+        text-align: center;
+        font-weight: 600;
+    }
 
     .remove-item {
         background: none;
@@ -686,42 +819,10 @@
         margin-top: 4px;
     }
 
-    .empty-cart { text-align: center; padding: 40px 20px; color: #AAA; }
-
-    .order-item {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 12px;
-    }
-
-    .order-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .order-id { font-weight: 700; color: var(--accent); }
-    .order-date { font-size: 13px; color: #AAA; }
-    .order-products { margin-bottom: 12px; }
-
-    .order-product {
-        display: flex;
-        justify-content: space-between;
-        padding: 6px 0;
-        font-size: 14px;
-    }
-
-    .order-total {
-        text-align: right;
-        font-size: 18px;
-        font-weight: 700;
-        color: var(--accent);
-        font-family: Georgia, serif;
+    .empty-cart {
+        text-align: center;
+        padding: 40px 20px;
+        color: #AAA;
     }
 
     .shipping-section {
@@ -817,8 +918,14 @@
         border-top: 1px solid var(--border);
     }
 
-    .summary-row.total .label { color: var(--text); }
-    .summary-row.total .value { color: var(--accent); font-family: Georgia, serif; }
+    .summary-row.total .label {
+        color: var(--text);
+    }
+
+    .summary-row.total .value {
+        color: var(--accent);
+        font-family: Georgia, serif;
+    }
 
     .summary-row .free-shipping {
         color: var(--accent);
@@ -879,7 +986,9 @@
         display: block;
     }
 
-    .footer-section a:hover { color: var(--accent); }
+    .footer-section a:hover {
+        color: var(--accent);
+    }
 
     .footer-bottom {
         text-align: center;
@@ -895,7 +1004,9 @@
         display: inline;
     }
 
-    .footer-bottom a:hover { text-decoration: underline; }
+    .footer-bottom a:hover {
+        text-decoration: underline;
+    }
 
     .toast {
         position: fixed;
@@ -913,10 +1024,19 @@
         max-width: 320px;
     }
 
-    .toast.show { transform: translateX(0); }
-    .toast-message { font-size: 14px; font-weight: 600; }
+    .toast.show {
+        transform: translateX(0);
+    }
 
-    .admin-login { max-width: 400px; margin: 0 auto; }
+    .toast-message {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .admin-login {
+        max-width: 400px;
+        margin: 0 auto;
+    }
 
     .image-upload-preview {
         margin-top: 12px;
@@ -939,60 +1059,149 @@
         border-radius: 8px;
     }
 
-    #adminModal, #adminDashboard, #accountModal { display: none; }
+    #adminModal, #adminDashboard {
+        display: none;
+    }
+
+    .offline-banner {
+        display: none;
+        background: #e53e3e;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .offline-banner.show {
+        display: block;
+    }
 
     @media (max-width: 1024px) {
-        .main-nav { display: none; }
-        .mobile-menu-toggle { display: flex; }
-        .header-left { gap: 16px; }
+        .main-nav {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+        }
+
+        .header-left {
+            gap: 16px;
+        }
     }
 
     @media (max-width: 768px) {
-        .vip-banner p { font-size: 12px; }
-        .header-inner { flex-wrap: wrap; }
-        .header-left { width: auto; }
-        .logo-text { font-size: 20px; }
+        .vip-banner p {
+            font-size: 12px;
+        }
+
+        .header-inner {
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 20px;
+        }
+
         .header-actions {
             width: 100%;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .user-info {
             order: -1;
             width: 100%;
             justify-content: center;
             margin-bottom: 8px;
         }
-        .hero { padding: 60px 0 40px; }
-        .hero h1 { font-size: 36px; }
-        .hero p { font-size: 16px; }
-        .section-title { font-size: 28px; }
+
+        .hero {
+            padding: 60px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+        }
+
+        .hero p {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 28px;
+        }
+
         .product-grid {
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 16px;
         }
-        .product-name { font-size: 15px; }
-        .product-price { font-size: 20px; }
-        .add-cart-btn { padding: 6px 12px; font-size: 12px; }
-        .modal-content { margin: 10px; }
-        .footer-content { grid-template-columns: 1fr; gap: 32px; }
-        .toast { right: 10px; left: 10px; max-width: none; }
-        .form-row { grid-template-columns: 1fr; }
-        .mega-menu-content { grid-template-columns: 1fr; }
+
+        .product-name {
+            font-size: 15px;
+        }
+
+        .product-price {
+            font-size: 20px;
+        }
+
+        .add-cart-btn {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .modal-content {
+            margin: 10px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .toast {
+            right: 10px;
+            left: 10px;
+            max-width: none;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .mega-menu-content {
+            grid-template-columns: 1fr;
+        }
     }
 
     @media (max-width: 390px) {
-        .container { padding: 0 16px; }
-        .hero h1 { font-size: 32px; }
+        .container {
+            padding: 0 16px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+        }
+
         .product-grid {
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
-        .btn { padding: 8px 14px; font-size: 13px; }
+
+        .btn {
+            padding: 8px 14px;
+            font-size: 13px;
+        }
     }
 </style>
 </head>
 <body>
+    <div class="offline-banner" id="offlineBanner">You are currently offline. Showing cached content.</div>
     <div class="vip-banner">
         <div class="container">
             <p>VIP MEMBERS GET EXCLUSIVE DROPS <span>Sign up today for early access</span></p>
@@ -1028,7 +1237,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="nav-item has-dropdown">
                             <button class="nav-btn" data-category="Basketball Cards" onclick="filterCategory('Basketball Cards')">Basketball Cards</button>
                             <div class="mega-menu">
@@ -1052,7 +1260,8 @@
                     </button>
                 </div>
 
-                <div class="header-actions" id="headerActions"></div>
+                <div class="header-actions" id="headerActions">
+                </div>
             </div>
         </div>
     </header>
@@ -1114,7 +1323,6 @@
                     <p>Join our VIP list for exclusive drops, early access, and special pricing on limited editions.</p>
                     <button class="btn" style="margin-top:12px;" onclick="showAdminModal()">Admin</button>
                 </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 PokeBasket. All rights reserved. | Contact: <a href="mailto:jdasilva198333@gmail.com">jdasilva198333@gmail.com</a></p>
             </div>
@@ -1138,7 +1346,6 @@
                         <input type="password" class="form-input" id="loginPassword" required>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-                    <p style="text-align:center;margin-top:16px;font-size:14px;color:#AAA;">Don't have an account? <a href="#" onclick="closeModal('loginModal');showModal('signupModal');return false;" style="color:var(--accent);text-decoration:none;">Sign up</a></p>
                 </form>
             </div>
         </div>
@@ -1165,7 +1372,6 @@
                         <input type="password" class="form-input" id="signupPassword" required minlength="6">
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
-                    <p style="text-align:center;margin-top:16px;font-size:14px;color:#AAA;">Already have an account? <a href="#" onclick="closeModal('signupModal');showModal('loginModal');return false;" style="color:var(--accent);text-decoration:none;">Login</a></p>
                 </form>
             </div>
         </div>
@@ -1179,18 +1385,6 @@
             </div>
             <div class="modal-body">
                 <div id="cartContent"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="accountModal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h3 class="modal-title serif">My Account</h3>
-                <button class="close-btn" onclick="closeModal('accountModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="accountContent"></div>
             </div>
         </div>
     </div>
@@ -1234,6 +1428,7 @@
                             <label class="form-label">Stock *</label>
                             <input type="number" class="form-input" id="prodStock" min="0" required>
                         </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Category *</label>
@@ -1279,20 +1474,108 @@
         </div>
     </div>
 
+    <div class="modal" id="installModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title serif">Install PokeBasket App</h3>
+                <button class="close-btn" onclick="closeModal('installModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="installInstructions"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="toast" id="toast">
         <div class="toast-message" id="toastMessage"></div>
     </div>
 
 <script>
+    /*
+    ===== PWA SETUP INSTRUCTIONS =====
+    
+    Create these files in your project root:
+    
+    1. manifest.json:
+    {
+      "name": "PokeBasket - Collectible Cards",
+      "short_name": "PokeBasket",
+      "description": "Premium Pokemon & Basketball collectible cards",
+      "start_url": "/",
+      "display": "standalone",
+      "background_color": "#0A0A0A",
+      "theme_color": "#e53e3e",
+      "orientation": "any",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "icon-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
+    }
+    
+    2. sw.js:
+    const CACHE_NAME = 'pokebasket-v1';
+    const urlsToCache = [
+      '/',
+      '/index.html'
+    ];
+    
+    self.addEventListener('install', event => {
+      event.waitUntil(
+        caches.open(CACHE_NAME)
+          .then(cache => cache.addAll(urlsToCache))
+      );
+    });
+    
+    self.addEventListener('fetch', event => {
+      event.respondWith(
+        caches.match(event.request)
+          .then(response => {
+            if (response) {
+              return response;
+            }
+            return fetch(event.request).catch(() => {
+              return caches.match('/index.html');
+            });
+          })
+      );
+    });
+    
+    self.addEventListener('activate', event => {
+      event.waitUntil(
+        caches.keys().then(cacheNames => {
+          return Promise.all(
+            cacheNames.map(cacheName => {
+              if (cacheName !== CACHE_NAME) {
+                return caches.delete(cacheName);
+              }
+            })
+          );
+        })
+      );
+    });
+    
+    3. Icons: Create icon-192.png and icon-512.png (192x192 and 512x512)
+    */
+
     let products = [];
     let cart = [];
     let currentUser = null;
     let isAdmin = false;
     let shippingType = 'us';
     let currentFilter = { category: 'all', subcategory1: '', subcategory2: '' };
+    let deferredPrompt = null;
     const SHIPPING_RATES = { us: 5, international: 15 };
     const FREE_SHIPPING_THRESHOLD = 50;
-    const CART_STORAGE_KEY = 'pokebasket_cart';
 
     document.addEventListener('DOMContentLoaded', () => {
         loadProducts();
@@ -1301,11 +1584,96 @@
         renderProducts();
         updateHeader();
         updateCartBadge();
+        setupPWA();
+        setupOfflineDetection();
         document.getElementById('prodImageFile').addEventListener('change', previewAdminImage);
         document.getElementById('adminImagePreview').addEventListener('click', () => document.getElementById('prodImageFile').click());
         document.getElementById('loginForm').addEventListener('submit', handleLogin);
         document.getElementById('signupForm').addEventListener('submit', handleSignup);
     });
+
+    function setupPWA() {
+        // Listen for beforeinstallprompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallButton();
+        });
+
+        // Check if already installed
+        window.addEventListener('appinstalled', () => {
+            deferredPrompt = null;
+            hideInstallButton();
+            showToast('App installed successfully!');
+        });
+
+        // iOS detection
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        
+        if (isIOS && !isStandalone) {
+            showIOSInstallInstructions();
+        }
+    }
+
+    function showInstallButton() {
+        const installBtn = document.querySelector('.install-btn');
+        if (installBtn) {
+            installBtn.style.display = 'inline-flex';
+        }
+    }
+
+    function hideInstallButton() {
+        const installBtn = document.querySelector('.install-btn');
+        if (installBtn) {
+            installBtn.style.display = 'none';
+        }
+    }
+
+    function showIOSInstallInstructions() {
+        const instructions = `
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">📱</div>
+                <h4 style="color: var(--accent); margin-bottom: 16px;">Install PokeBasket on iOS</h4>
+                <p style="margin-bottom: 12px;">To install this app on your iPhone/iPad:</p>
+                <ol style="text-align: left; max-width: 300px; margin: 0 auto; line-height: 1.8;">
+                    <li>Tap the Share button <span style="font-size: 20px;">⬆️</span></li>
+                    <li>Scroll down and tap "Add to Home Screen"</li>
+                    <li>Tap "Add" in the top right</li>
+                </ol>
+            </div>
+        `;
+        document.getElementById('installInstructions').innerHTML = instructions;
+        setTimeout(() => showModal('installModal'), 2000);
+    }
+
+    async function installApp() {
+        if (!deferredPrompt) return;
+        
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+            showToast('Installing app...');
+        }
+        deferredPrompt = null;
+        hideInstallButton();
+    }
+
+    function setupOfflineDetection() {
+        window.addEventListener('online', () => {
+            document.getElementById('offlineBanner').classList.remove('show');
+            showToast('Back online!');
+        });
+
+        window.addEventListener('offline', () => {
+            document.getElementById('offlineBanner').classList.add('show');
+        });
+
+        if (!navigator.onLine) {
+            document.getElementById('offlineBanner').classList.add('show');
+        }
+    }
 
     function loadProducts() {
         const saved = localStorage.getItem('pokebasket_products');
@@ -1327,17 +1695,13 @@
         currentUser = user;
     }
 
-    function getCartKey() {
-        return currentUser ? `${CART_STORAGE_KEY}_${currentUser.email}` : CART_STORAGE_KEY;
-    }
-
     function loadCart() {
-        const saved = localStorage.getItem(getCartKey());
-        cart = saved ? JSON.parse(saved) : [];
+        const saved = localStorage.getItem('pokebasket_cart');
+        if (saved) cart = JSON.parse(saved);
     }
 
     function saveCart() {
-        localStorage.setItem(getCartKey(), JSON.stringify(cart));
+        localStorage.setItem('pokebasket_cart', JSON.stringify(cart));
         updateCartBadge();
     }
 
@@ -1512,11 +1876,11 @@
         }
         
         container.innerHTML = `<div class="product-grid" id="productGrid">${filteredProducts.map(p => `
-            <div class="product-card" data-product-id="${p.id}">
+            <div class="product-card">
                 ${isAdmin ? `
                     <div class="admin-badge">ADMIN</div>
                     <div class="product-actions-admin">
-                        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteProduct(${p.id})">Delete</button>
+                        <button class="btn btn-danger" style="padding:6px 12px;font-size:12px;" onclick="event.stopPropagation(); deleteProduct(${p.id})">Delete</button>
                     </div>
                 ` : ''}
                 <div class="product-image">
@@ -1562,9 +1926,8 @@
         if (currentUser) {
             html += `
                 <div class="user-info">
-                    <span>Welcome, <span class="user-name">${currentUser.name}</span></span>
+                    <span>Hi, <span class="user-name">${currentUser.name}</span></span>
                 </div>
-                <button class="btn btn-sm" onclick="showAccount()">My Orders</button>
                 <button class="btn" onclick="logout()">Logout</button>
             `;
         } else {
@@ -1575,6 +1938,7 @@
         }
 
         html += `
+            <button class="btn install-btn" onclick="installApp()">📱 Install App</button>
             <button class="btn btn-primary cart-btn" onclick="showCart()">
                 Cart <span class="cart-badge" id="cartBadge">0</span>
             </button>
@@ -1726,68 +2090,10 @@
             showToast('Cart is empty');
             return;
         }
-
-        const { subtotal, shippingCost, total } = calculateTotals();
-        const orders = JSON.parse(localStorage.getItem('pokebasket_orders') || '[]');
-        const order = {
-            id: 'ORD' + Date.now(),
-            userEmail: currentUser.email,
-            userName: currentUser.name,
-            items: cart.map(item => ({
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                quantity: item.quantity
-            })),
-            subtotal,
-            shipping: shippingCost,
-            total,
-            shippingType,
-            date: new Date().toISOString(),
-            status: 'pending'
-        };
-        orders.push(order);
-        localStorage.setItem('pokebasket_orders', JSON.stringify(orders));
-
         cart = [];
         saveCart();
         closeModal('cartModal');
         showToast('Order placed! Redirecting to PayPal...');
-    }
-
-    function showAccount() {
-        const content = document.getElementById('accountContent');
-        const orders = JSON.parse(localStorage.getItem('pokebasket_orders') || '[]');
-        const userOrders = orders.filter(o => o.userEmail === currentUser.email).reverse();
-
-        if (userOrders.length === 0) {
-            content.innerHTML = '<div class="empty-cart">No orders yet. Start shopping!</div>';
-        } else {
-            content.innerHTML = `
-                <h4 style="color:var(--accent);margin-bottom:20px;">Order History</h4>
-                ${userOrders.map(order => `
-                    <div class="order-item">
-                        <div class="order-header">
-                            <div>
-                                <div class="order-id">${order.id}</div>
-                                <div class="order-date">${new Date(order.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</div>
-                            </div>
-                            <div style="font-size:12px;color:#AAA;">${order.shippingType === 'us' ? 'US' : 'International'} Shipping</div>
-                        </div>
-                        <div class="order-products">
-                            ${order.items.map(item => `
-                                <div class="order-product">
-                                    <span>${item.name} x${item.quantity}</span>
-                                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="order-total">Total: $${order.total.toFixed(2)}</div>
-                    </div>
-                `).join('')}
-            `;
-        }
-        showModal('accountModal');
     }
 
     function handleLogin(e) {
@@ -1804,10 +2110,9 @@
         }
         
         saveUser({ name: user.name, email: user.email });
-        loadCart();
         closeModal('loginModal');
         updateHeader();
-        showToast(`Welcome, ${user.name}!`);
+        showToast(`Welcome back, ${user.name}!`);
         document.getElementById('loginForm').reset();
     }
 
@@ -1836,7 +2141,6 @@
         users.push({ name, email, password });
         localStorage.setItem('pokebasket_users', JSON.stringify(users));
         saveUser({ name, email });
-        loadCart();
         closeModal('signupModal');
         updateHeader();
         showToast(`Account created! Welcome, ${name}!`);
@@ -1846,7 +2150,6 @@
     function logout() {
         localStorage.removeItem('pokebasket_user');
         currentUser = null;
-        loadCart();
         updateHeader();
         showToast('Logged out successfully');
     }
@@ -1915,7 +2218,21 @@
             document.body.style.overflow = '';
         }
     });
+
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registered:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+        });
+    }
 </script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 <script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 </body>
 </html>
